@@ -38,7 +38,7 @@ add_action('init', function () {
     WC_Mollie_Autoload::register();
 
     add_filter('woocommerce-mollie-payments_webhook_url', function($webhook_url) {
-        // Overwrite plugin webhook URL to use ngrok.io
+        // Overwrite plugin webhook URL (I use ngrok.io)
         $new_webhook_url = str_replace($_SERVER['HTTP_HOST'], 'ba1e06b7.ngrok.io', $webhook_url);
 
         WC_Mollie::debug("Overwrite webhook url: $webhook_url => $new_webhook_url");
@@ -51,7 +51,7 @@ add_action('init', function () {
         return 'http://api.mollie.dev';
     });*/
 
-    add_action('woocommerce-mollie-payments_create_payment_parameters', function($data, $order) {
+    add_action('woocommerce-mollie-payments_create_payment', function($data, $order) {
         WC_Mollie::debug("Order {$order->id} create payment parameters: " . print_r($data, TRUE));
     }, $priority = 10, $accepted_args = 2);
 
