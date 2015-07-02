@@ -61,7 +61,7 @@ add_action('admin_init', function() {
         deactivate_plugins(plugin_basename(__FILE__));
 
         add_action('admin_notices', function() {
-            echo '<div class="error"><p>' .__('WooCommerce Mollie Payments (development) deactivated because it depends on WooCommerce Mollie Payments.', 'woocommerce-mollie-payments') . '</p></div>';
+            echo '<div class="error"><p>WooCommerce Mollie Payments (development) deactivated because it depends on WooCommerce Mollie Payments.</p></div>';
         });
     }
 });
