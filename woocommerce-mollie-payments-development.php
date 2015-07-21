@@ -13,16 +13,16 @@
 
 add_action('init', function () {
     // Register Mollie autoloader
-    require_once dirname(dirname(__FILE__)) . '/woocommerce-mollie-payments/includes/WC/Mollie/Autoload.php';
+    require_once dirname(dirname(__FILE__)) . '/woocommerce-mollie-payments/includes/Mollie/WC/Autoload.php';
 
-    WC_Mollie_Autoload::register();
+    Mollie_WC_Autoload::register();
 
     // Overwrite payment webhook
     /*add_filter('woocommerce-mollie-payments_webhook_url', function($webhook_url) {
         // Overwrite plugin webhook URL (I use ngrok.io)
         $new_webhook_url = str_replace($_SERVER['HTTP_HOST'], '63950d2f.ngrok.io', $webhook_url);
 
-        WC_Mollie::debug("Overwrite webhook url: $webhook_url => $new_webhook_url");
+        Mollie_WC_Plugin::debug("Overwrite webhook url: $webhook_url => $new_webhook_url");
 
         return $new_webhook_url;
     });*/
@@ -34,12 +34,12 @@ add_action('init', function () {
 
     // Used payment parameters
     add_action('woocommerce-mollie-payments_create_payment', function($data, $order) {
-        WC_Mollie::debug("Order {$order->id} create payment parameters: " . print_r($data, TRUE));
+        Mollie_WC_Plugin::debug("Order {$order->id} create payment parameters: " . print_r($data, TRUE));
     }, $priority = 10, $accepted_args = 2);
 
     // Mollie Payment created
     add_action('woocommerce-mollie-payments_payment_created', function($payment, $order) {
-        WC_Mollie::debug("Order {$order->id} payment created: " . print_r($payment, TRUE));
+        Mollie_WC_Plugin::debug("Order {$order->id} payment created: " . print_r($payment, TRUE));
     }, $priority = 10, $accepted_args = 2);
 });
 
