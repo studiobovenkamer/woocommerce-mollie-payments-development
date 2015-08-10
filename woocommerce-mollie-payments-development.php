@@ -13,7 +13,7 @@
 
 add_action('init', function () {
     // Register Mollie autoloader
-    require_once dirname(dirname(__FILE__)) . '/woocommerce-mollie-payments/includes/Mollie/WC/Autoload.php';
+    require_once dirname(dirname(__FILE__)) . '/woocommerce-mollie-payments/includes/mollie/wc/autoload.php';
 
     Mollie_WC_Autoload::register();
 
